@@ -1,2 +1,0 @@
-[2023-07-18 10:55:17.251] [basic_logger] [info] daimon robotics
-[2023-07-18 13:58:59.410] [basic_logger] [info] xxxxxxx
