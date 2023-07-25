@@ -1,0 +1,9 @@
+/home/d/githubPro/casadi_test/build/CMakeFiles/test_global_variable.dir
+/home/d/githubPro/casadi_test/build/CMakeFiles/ipopt_test.dir
+/home/d/githubPro/casadi_test/build/CMakeFiles/edit_cache.dir
+/home/d/githubPro/casadi_test/build/CMakeFiles/casadi_test_perf.dir
+/home/d/githubPro/casadi_test/build/CMakeFiles/test_spdlog.dir
+/home/d/githubPro/casadi_test/build/CMakeFiles/casadi_test_node2.dir
+/home/d/githubPro/casadi_test/build/CMakeFiles/rebuild_cache.dir
+/home/d/githubPro/casadi_test/build/CMakeFiles/casadi_test_nodec.dir
+/home/d/githubPro/casadi_test/build/CMakeFiles/casadi_test_node.dir

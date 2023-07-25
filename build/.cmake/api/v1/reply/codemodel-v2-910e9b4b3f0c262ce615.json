@@ -1,0 +1,113 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.9"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "casadi_test",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "casadi_test_node::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-casadi_test_node-Debug-76ba2e8e7629f0bcd64e.json",
+					"name" : "casadi_test_node",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "casadi_test_node2::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-casadi_test_node2-Debug-2d9330737743bf0f891b.json",
+					"name" : "casadi_test_node2",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "casadi_test_nodec::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-casadi_test_nodec-Debug-d4b72e3256f675ce2d5a.json",
+					"name" : "casadi_test_nodec",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "casadi_test_perf::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-casadi_test_perf-Debug-ea1a66236052a06cb624.json",
+					"name" : "casadi_test_perf",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ipopt_test::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ipopt_test-Debug-c2f51f311a97e27083d0.json",
+					"name" : "ipopt_test",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "test_global_variable::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-test_global_variable-Debug-614ce8fa68e92c51aafb.json",
+					"name" : "test_global_variable",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "test_spdlog::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-test_spdlog-Debug-b3c1d2743f2b9d8b8389.json",
+					"name" : "test_spdlog",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/d/githubPro/casadi_test/build",
+		"source" : "/home/d/githubPro/casadi_test"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 0
+	}
+}
