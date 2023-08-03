@@ -39,6 +39,9 @@ include_directories(
 #                     ma27 
 #                     gfortran
 # )
+find_package(OsqpEigen)
+find_package(Eigen3)
+include_directories(SYSTEM ${EIGEN3_INCLUDE_DIR})
 
 add_executable(${PROJECT_NAME}_node src/casadi_test.cpp )
 target_link_libraries(${PROJECT_NAME}_node ${catkin_LIBRARIES} casadi) 
@@ -67,4 +70,20 @@ add_executable(test_global_variable src/test_global_variable/globalVariable.cpp
 src/test_global_variable/Derive.cpp
 src/test_global_variable/Derive2.cpp
 
-)   
+) 
+
+add_executable(osqp_eigen_test src/osqp_eigen_test.cc)
+target_link_libraries(osqp_eigen_test OsqpEigen::OsqpEigen)
+
+
+find_package(ompl REQUIRED)
+include_directories(${OMPL_INCLUDE_DIRS})
+link_directories(${OMPL_LIBRARY_DIRS})
+add_definitions(${OMPL_DEFINITIONS})
+find_package(Boost COMPONENTS system REQUIRED)
+add_executable(test_rrtstar src/ompl_test/rrtstar.cc)
+target_link_libraries(test_rrtstar ${Boost_LIBRARIES} ${OMPL_LIBRARIES})
+
+
+add_executable(rrt_obs src/ompl_test/rrt_obstacle.cc)
+target_link_libraries(rrt_obs ${Boost_LIBRARIES} ${OMPL_LIBRARIES})
