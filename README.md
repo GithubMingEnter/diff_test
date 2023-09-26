@@ -14,5 +14,7 @@ You can see the introduction from this blog: [blog](https://blog.csdn.net/ljq314
 
 ## spdlog
 
-
-...
+## ACADO
+configuration refer 
+https://blog.csdn.net/tzr0725/article/details/120632370
+http://acado.github.io/install_linux.html

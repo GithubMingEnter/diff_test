@@ -13,7 +13,8 @@ add_executable(dubin kinomaticCarPath.cc)
 target_link_libraries(dubin ${Boost_LIBRARIES} 
 ${OMPL_LIBRARIES}
 ${Boost_FILESYSTEM_LIBRARY}
-${Boost_PROGRAM_OPTIONS_LIBRARY})
+${Boost_PROGRAM_OPTIONS_LIBRARY}
+)
 
 
 
