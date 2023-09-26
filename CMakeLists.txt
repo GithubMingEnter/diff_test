@@ -108,7 +108,7 @@ add_subdirectory(src/ompl_test)
 add_subdirectory(src/B_test)
 add_subdirectory(src/glog_test)
 add_subdirectory(src/multi_thread)
-
+add_subdirectory(src/acado_test)
 
 
 
