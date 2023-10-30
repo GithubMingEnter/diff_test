@@ -25,3 +25,17 @@ glog::glog
 boost_thread #note
 )
 
+add_executable(future future.cc)
+target_link_libraries(future pthread 
+
+)
+
+
+add_executable(read_write read_write.cc)
+target_link_libraries(read_write pthread 
+${Boost_LIBRARIES} 
+${Boost_FILESYSTEM_LIBRARY}
+${Boost_PROGRAM_OPTIONS_LIBRARY}
+glog::glog
+boost_thread #note
+)

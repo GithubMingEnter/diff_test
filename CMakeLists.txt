@@ -103,12 +103,14 @@ target_link_libraries(rrt_obs ${Boost_LIBRARIES} ${OMPL_LIBRARIES})
 add_executable(cc_test src/cc_test.cc)
 target_link_libraries(cc_test ${Boost_LIBRARIES} )
 
+SET(onnxruntime_DIR /usr/local/include/onnxruntime/onnxruntime)
+find_package(onnxruntime REQUIRED)
 
 add_subdirectory(src/ompl_test)
 add_subdirectory(src/B_test)
 add_subdirectory(src/glog_test)
 add_subdirectory(src/multi_thread)
 add_subdirectory(src/acado_test)
-
+add_subdirectory(src/nlopt_test)
 
 

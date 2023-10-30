@@ -3,7 +3,8 @@ project(acado_test)
 
 # 添加编译选项
 # set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O3 ${FLAG_OPENMP} -std=c++11")
+#使用了 -O3级别
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O2 ${FLAG_OPENMP} -std=c++11")
 
 # 生成compile_commands.json文件
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
