@@ -39,3 +39,20 @@ ${Boost_PROGRAM_OPTIONS_LIBRARY}
 glog::glog
 boost_thread #note
 )
+
+# add_executable(priority priority.cc)
+# target_link_libraries(priority pthread 
+# ${Boost_LIBRARIES} 
+# ${Boost_FILESYSTEM_LIBRARY}
+# ${Boost_PROGRAM_OPTIONS_LIBRARY}
+# glog::glog
+# boost_thread #note
+# )
+add_executable(priority2 priority.cc)
+target_link_libraries(priority2 pthread 
+${Boost_LIBRARIES} 
+${Boost_FILESYSTEM_LIBRARY}
+${Boost_PROGRAM_OPTIONS_LIBRARY}
+glog::glog
+boost_thread #note
+)
