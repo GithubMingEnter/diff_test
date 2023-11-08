@@ -22,7 +22,6 @@ void thread_func2()
 
 
 
-
 int main()
 {
     std::thread t(thread_func);

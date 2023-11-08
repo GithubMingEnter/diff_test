@@ -5,6 +5,13 @@ find_package(glog REQUIRED)
 
 find_package(Boost COMPONENTS system REQUIRED)
 
+add_executable(test test.cc)
+target_link_libraries(test pthread 
+
+)
+
+
+
 add_executable(boost_bind_test boost_bind_test.cc)
 target_link_libraries(boost_bind_test pthread 
 ${Boost_LIBRARIES} 
@@ -27,6 +34,15 @@ boost_thread #note
 
 add_executable(future future.cc)
 target_link_libraries(future pthread 
+
+)
+add_executable(promise_future promise_future.cc)
+target_link_libraries(promise_future pthread 
+
+)
+
+add_executable(promise_future2 promise_future2.cc)
+target_link_libraries(promise_future2 pthread 
 
 )
 
@@ -56,3 +72,7 @@ ${Boost_PROGRAM_OPTIONS_LIBRARY}
 glog::glog
 boost_thread #note
 )
+
+
+
+
