@@ -49,6 +49,11 @@ add_executable(package_task package_task.cc)
 target_link_libraries(package_task pthread 
 
 )
+add_executable(producer_consummer producer_consummer.cc)
+target_link_libraries(producer_consummer pthread 
+
+)
+
 
 add_executable(read_write read_write.cc)
 target_link_libraries(read_write pthread 
