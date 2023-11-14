@@ -1,46 +1,76 @@
-#include <iostream>
-using std::cout;
-using std::endl;
-#include <vector>
-using std::vector;
-#include <sstream>
-#include <string>
-using std::string;
-#include <algorithm>
+// #include <iostream>
+// using std::cout;
+// using std::endl;
+// #include <vector>
+// using std::vector;
+// #include <sstream>
+// #include <string>
+// using std::string;
+// #include <algorithm>
 
-#include <thread>
-#include <future>
+// #include <thread>
+// #include <future>
 
-int GetVectorMax(const vector<int>& vec) {
-    return *(std::max_element(vec.begin(), vec.end()));
-}
+// int GetVectorMax(const vector<int>& vec) {
+//     return *(std::max_element(vec.begin(), vec.end()));
+// }
 
-void PrintIntValueOnShared(std::shared_future<int>& s_fu) {
-    s_fu.wait();
-    std::stringstream ss;
-    ss << std::this_thread::get_id() << " Value: " << s_fu.get();
-    cout << ss.str() << endl;
-    return;
-}
+// void PrintIntValueOnShared(std::shared_future<int>& s_fu) {
+//     s_fu.wait();
+//     std::stringstream ss;
+//     ss << std::this_thread::get_id() << " Value: " << s_fu.get();
+//     cout << ss.str() << endl;
+//     return;
+// }
 
-int main()
-{
-    vector<int> vec = { 1, 2, 3, 4, 5 };
+// int main()
+// {
+//     vector<int> vec = { 1, 2, 3, 4, 5 };
 
-    std::packaged_task<int(const vector<int>&)> pt(GetVectorMax);
-    std::shared_future<int> s_fu(pt.get_future());
+//     std::packaged_task<int(const vector<int>&)> pt(GetVectorMax);
+//     std::shared_future<int> s_fu(pt.get_future());
 
-    std::thread t1(&PrintIntValueOnShared, ref(s_fu));
-    std::thread t2(&PrintIntValueOnShared, ref(s_fu));
-    std::thread t3(&PrintIntValueOnShared, ref(s_fu));
+//     std::thread t1(&PrintIntValueOnShared, ref(s_fu));
+//     std::thread t2(&PrintIntValueOnShared, ref(s_fu));
+//     std::thread t3(&PrintIntValueOnShared, ref(s_fu));
 
     
 
-    std::thread(ref(pt), ref(vec)).join();
+//     std::thread(ref(pt), ref(vec)).join();
 
-    t1.join();
-    t2.join();
-    t3.join();
+//     t1.join();
+//     t2.join();
+//     t3.join();
 
-    return EXIT_SUCCESS;
+//     return EXIT_SUCCESS;
+// }
+
+#include <iostream>  
+#include <future>  
+#include <thread>  
+#include <functional>  
+  
+// 函数原型  
+int calculate(int x) {  
+    return x * 2;  
+}  
+  
+int main() {  
+    // 使用 std::bind 绑定函数和参数，创建一个 std::packaged_task 对象  
+    std::packaged_task<int(int)> task(std::bind(calculate, 5));  
+  
+    // 获取一个 std::future 对象，用于获取任务的结果  
+    std::future<int> result = task.get_future();  
+  
+    // 将任务传递给线程  
+    std::thread(std::move(task), 5).detach();  
+  
+    // 在主线程中打印结果  
+    std::cout << "Result is: " << result.get() << std::endl;  
+  
+    return 0;  
 }
+
+
+
+

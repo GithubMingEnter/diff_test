@@ -45,7 +45,10 @@ add_executable(promise_future2 promise_future2.cc)
 target_link_libraries(promise_future2 pthread 
 
 )
+add_executable(package_task package_task.cc)
+target_link_libraries(package_task pthread 
 
+)
 
 add_executable(read_write read_write.cc)
 target_link_libraries(read_write pthread 
