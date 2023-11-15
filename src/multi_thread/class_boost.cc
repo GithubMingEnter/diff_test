@@ -18,29 +18,37 @@ class MyClass
     using write_lock = boost::unique_lock<write_read_mtx>;
     using read_lock = boost::shared_lock<write_read_mtx>;
     bool ready = false; // 共享变量
-    mutable write_read_mtx wr_mtx;
+    mutable write_read_mtx wr_mtx,wr_mtx1;
     boost::condition_variable cv; //
 public:
     bool init()
     {
         con_var = 0;
-        // boost::thread t2(&MyClass::use2,this);
-        // boost::thread t1(&MyClass::use1,this);
-        // t1.join();
-        // t2.join();
+        boost::thread t2(&MyClass::use2,this);
+        boost::thread t1(&MyClass::use1,this);
+        
         boost::thread t4(&MyClass::use4,this);
         boost::thread t3(&MyClass::use3,this);
-        
+        t1.join();
+        t2.join();
         t3.join();
         t4.join();
         return true;
     }
     void use1()
     {
-        write_lock wLock(wr_mtx);
+        write_lock wLock(wr_mtx1);
         while (1)
         {
             {
+                /* template<typename predicate_type>
+                void wait(unique_lock<mutex>& m,predicate_type pred)
+                {
+                    while (!pred())
+                    {
+                        wait(m);
+                    }
+                } */
                 cv.wait(wLock, [&]
                         { return ready == 0; });
                 // 等待资源非空
@@ -55,7 +63,7 @@ public:
     }
     void use2()
     {
-        write_lock rLock(wr_mtx);
+        write_lock rLock(wr_mtx1);
         while (1)
         {
             {
@@ -70,30 +78,36 @@ public:
     }
     void use3()
     {
-
+        
         while (1)
         {
+            write_lock wLock(wr_mtx);
+            con_var++;
+            // cv.notify_all();
+            wLock.unlock();
+            std::cout << "use3 con = " << con_var << std::endl;
+            std::this_thread::sleep_for(std::chrono::seconds(1));
+            ready = true;
             
-            {
-                boost::lock_guard<write_read_mtx> lock(wr_mtx);
-                con_var++;
-                std::cout << "use3 con = " << con_var << std::endl;
-                std::this_thread::sleep_for(std::chrono::seconds(3));
-                ready = true;
-            }
             
         }
     }
+    /* 
+    use4() only read con_var
+    
+     */
     void use4()
     {
+        
         while (1)
         {
-            {
-                boost::lock_guard<write_read_mtx> lock(wr_mtx);
-                std::cout << "use4 con = " << con_var << std::endl;
-                std::this_thread::sleep_for(std::chrono::seconds(1));
-                ready = false;
-            }
+            write_lock rLock(wr_mtx);
+            // cv.wait(rLock); 
+            std::cout << "use4 con = " << con_var << std::endl;
+            rLock.unlock();
+            //because delay exists , so programme can switch thread
+            std::this_thread::sleep_for(std::chrono::seconds(1));
+            ready = false;
         }
     }
     void threadFunc()
