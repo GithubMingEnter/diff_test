@@ -1,6 +1,6 @@
 # Set the project name
 project (thread_test)
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 find_package(glog REQUIRED)
 
 find_package(Boost COMPONENTS system REQUIRED)
@@ -49,11 +49,15 @@ add_executable(package_task package_task.cc)
 target_link_libraries(package_task pthread 
 
 )
-add_executable(producer_consummer producer_consummer.cc)
+add_executable(producer_consummer tasks/producer_consummer.cc)
 target_link_libraries(producer_consummer pthread 
 
 )
 
+add_executable(thread_pool tasks/thread_pool.cc)
+target_link_libraries(thread_pool pthread 
+
+)
 
 add_executable(read_write read_write.cc)
 target_link_libraries(read_write pthread 

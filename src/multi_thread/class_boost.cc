@@ -21,6 +21,10 @@ class MyClass
     mutable write_read_mtx wr_mtx,wr_mtx1;
     boost::condition_variable cv; //
 public:
+    MyClass(){};
+    ~MyClass(){
+
+    }
     bool init()
     {
         con_var = 0;
