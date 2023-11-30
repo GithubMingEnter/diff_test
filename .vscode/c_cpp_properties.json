@@ -8,6 +8,7 @@
       "includePath": [
         "/home/d/githubPro/VAP_ws/devel/include/**",
         "/opt/ros/noetic/include/**",
+        "/home/d/githubPro/casadi_test/src/pcl_test/**",
         "/usr/include/**"
       ],
       "name": "ROS",

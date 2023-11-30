@@ -3,6 +3,7 @@
 #include <boost/noncopyable.hpp>
 #include<spdlog/spdlog.h>
 #include<stdio.h>
+#include <memory>
 class Test1 {
     public:
     int i_;
@@ -41,10 +42,25 @@ void multi_point()
     /* &（*p2）=&p=p2  &(**p2)=*p2=&(*p)=&(pi) 一个& 一个*可以抵消  */
     
 }
-
+struct MyClass {
+    int value;
+    MyClass(int v) : value(v) {}
+    ~MyClass() { std::cout << "MyClass destroyed\n"; }
+};
+int test_sharedPtr() {
+    std::shared_ptr<MyClass> ptr1 = std::make_shared<MyClass>(10);
+    std::shared_ptr<MyClass> ptr2 = ptr1; // ptr2 also points to the same object
+    std::cout << "ptr1 points to value: " << ptr1->value << "\n";
+    std::cout << "ptr2 points to value: " << ptr2->value << "\n";
+    return 0;
+}
 int main()
 {
     multi_point();
-
+    test_sharedPtr();
     return 0;
 }
+
+
+
+
