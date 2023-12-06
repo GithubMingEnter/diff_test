@@ -37,6 +37,17 @@ target_link_libraries(kd_tree ${PCL_LIBRARIES})
 add_executable(ransac 05sample/ransac.cc)
 target_link_libraries(ransac ${PCL_LIBRARIES})
 
+
+add_executable(pc2image 06Depth_image/pc2image.cc)
+target_link_libraries(pc2image ${PCL_LIBRARIES})
+
+add_executable(range2border 06Depth_image/range2border.cc)
+target_link_libraries(range2border ${PCL_LIBRARIES})
+
+add_executable(read_path 06Depth_image/read_path.cc)
+
+
+
 add_executable(plane_pcl_split 12segmentation/plane_pcl_split.cc)
 target_link_libraries(plane_pcl_split ${PCL_LIBRARIES})
 
@@ -53,3 +64,5 @@ target_link_libraries(direct_pass ${PCL_LIBRARIES})
 add_executable(condition 09filtering/condition.cc)
 target_link_libraries(condition ${PCL_LIBRARIES})
 
+install(TARGETS viewr DESTINATION bin)
+install(FILES include/*.h DESTINATION include)

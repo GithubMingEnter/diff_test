@@ -15,7 +15,7 @@ using namespace std::chrono_literals;
 pcl::visualization::PCLVisualizer::Ptr
 simpleVis(pcl::PointCloud<pcl::PointXYZ>::ConstPtr cloud, pcl::PointCloud<pcl::PointXYZ>::ConstPtr final = nullptr) {
     // --------------------------------------------
-    // -----Open 3D viewer and add point cloud-----
+    // -----Open 3D viewer and add point cloud,先加入点云，再修改属性-----
     // --------------------------------------------
     pcl::visualization::PCLVisualizer::Ptr viewer(new pcl::visualization::PCLVisualizer("3D Viewer"));
     viewer->setBackgroundColor(0, 0, 0);
@@ -78,14 +78,13 @@ main(int argc, char **argv) {
 
     // created RandomSampleConsensus object and compute the appropriated model
     // 圆形
-    pcl::SampleConsensusModelSphere<pcl::PointXYZ>::Ptr
-            model_s(new pcl::SampleConsensusModelSphere<pcl::PointXYZ>(cloud));
+    pcl::SampleConsensusModelSphere<pcl::PointXYZ>::Ptr model_s(new pcl::SampleConsensusModelSphere<pcl::PointXYZ>(cloud));
     // 平面
     pcl::SampleConsensusModelPlane<pcl::PointXYZ>::Ptr
             model_p(new pcl::SampleConsensusModelPlane<pcl::PointXYZ>(cloud));
     if (pcl::console::find_argument(argc, argv, "-f") >= 0) {
         pcl::RandomSampleConsensus<pcl::PointXYZ> ransac(model_p);
-        ransac.setDistanceThreshold(.01);
+        ransac.setDistanceThreshold(0.01);
         ransac.computeModel();
         ransac.getInliers(inliers);
     } else if (pcl::console::find_argument(argc, argv, "-sf") >= 0) {
@@ -97,7 +96,7 @@ main(int argc, char **argv) {
 
     // copies all inliers of the model computed to another PointCloudqq
     // 讲cloud中指定索引的点拷贝到final点云中
-    pcl::copyPointCloud(*cloud, inliers, *final);
+    pcl::copyPointCloud(*cloud,inliers,*final);
 
     // creates the visualization object and adds either our original cloud or all of the inliers
     // depending on the command line arguments specified.
