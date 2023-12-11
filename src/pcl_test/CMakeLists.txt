@@ -46,6 +46,8 @@ target_link_libraries(range2border ${PCL_LIBRARIES})
 
 add_executable(read_path 06Depth_image/read_path.cc)
 
+add_executable(07narf 07feature/NARF.cc)
+target_link_libraries(07narf ${PCL_LIBRARIES})
 
 
 add_executable(plane_pcl_split 12segmentation/plane_pcl_split.cc)

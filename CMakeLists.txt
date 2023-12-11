@@ -5,40 +5,13 @@ project(casadi_test)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# find_package(OpenCV REQUIRED)
 
-# set(AS_SOURCES
-#     ${CMAKE_CURRENT_SOURCE_DIR}/src/AStar.cpp
-# )
 
-# set(AS_HEADERS
-#     ${CMAKE_CURRENT_SOURCE_DIR}/include/AStar.h
-# )
 
 include_directories(
-  # include
-  ${catkin_INCLUDE_DIRS}
+
 )
-
-# include_directories(include 
-#                     maps
-#                     "/home/seivl/my_lib/OOQP/include"
-# )
-
-# link_directories("/home/seivl/my_lib/OOQP/lib")
-
-# add_executable(main src/main.cpp ${AS_HEADERS} ${AS_SOURCES})
-
-# target_link_libraries(main 
-#                     ${OpenCV_LIBS}
-#                     ooqpgensparse
-#                     ooqpsparse
-#                     ooqpgondzio
-#                     ooqpbase 
-#                     blas 
-#                     ma27 
-#                     gfortran
-# )
+# find_package(OpenCV REQUIRED)
 find_package(OsqpEigen)
 find_package(Eigen3)
 find_package(glog 0.4.0 REQUIRED)
