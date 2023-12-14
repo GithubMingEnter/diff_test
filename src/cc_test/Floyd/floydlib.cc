@@ -2,7 +2,28 @@
 #include <iostream>
 #include <fstream>
 #include<vector>
+#include<map>
+#include <boost/dll/runtime_symbol_info.hpp>
+
 using namespace std;
+
+void splitString(string srcStr, vector<string>& v_splitStr,
+                           string splitSymbol) {
+    // 清空容器
+    vector<string>().swap(v_splitStr);
+    while (string::npos != srcStr.find_first_of(splitSymbol)) {
+        // 获取第一个分隔符之前的文件类型
+        string strT = srcStr.substr(0, srcStr.find_first_of(splitSymbol));
+        // 将分割的字符加入到容器列表最后
+        v_splitStr.push_back(strT);
+        // 删除分割字符前面的，保留后面的字符串
+        srcStr =
+            srcStr.substr(srcStr.find_first_of(splitSymbol) + 1, srcStr.size());
+    }
+    // 最后的一个分割符号后面或者没有匹配到分割符号的字符加入容器列表
+    v_splitStr.push_back(srcStr);
+}
+
 
 Graph::Graph()		//默认构造
 {
@@ -27,14 +48,17 @@ void Graph::createGraph(Graph& G)
 {
     cout << "please input the number of vertex and arc:";
     G.n=4;
-    G.m=8;
+    G.m=9;
     // cin >> G.n >> G.m;
     G.data = new char[G.n];		//动态创建一维数组
     cout << "please input the value of vertice:";
     char a[4]={'A','B','C','D'}; 
+    idx_vec.resize(G.n);
     for(int p = 0; p < G.n; p++){
         // cin >> G.data[p];
         G.data[p]=a[p];
+        ver_map[a[p]]=p;
+        idx_vec[p]=a[p];
     }
         
     char v1, v2;
@@ -63,13 +87,21 @@ void Graph::createGraph(Graph& G)
     }
     
     for(int k = 0; k < G.m; k++){
-        power=atoi(vex[k].substr(0,vex[k].find(' ',0)).c_str());
-        v1=*vex[k].substr(vex[k].find(' ',0)+1,vex[k].find(' ',2)).c_str();
-        v2=*vex[k].substr(vex[k].find(' ',2)+1,vex[k].back()).c_str();
+        std::vector<string> lineStr;
+        std::string splitSymbol{' '};
+        splitString(vex[k],lineStr,splitSymbol);
+        power=atoi(lineStr[0].c_str());
+        string str0=lineStr[1];
+        v1=*lineStr[1].c_str();
+        string STR=lineStr[2];
+        v2=*lineStr[2].c_str();
+        // v2=*(vex[k].substr(vex[k].find(' ',2)+1,vex[k].back()).c_str());
 
         // cin >> power >> v1 >> v2;
-        i = getIndex(G, v1);
-        j = getIndex(G, v2);
+        // i = getIndex(G, v1);
+        // j = getIndex(G, v2);
+        i=ver_map[v1];
+        j=ver_map[v2];
         if(i == -1 || j == -1){	//没在顶点数组中找到对应的顶点下标
                 cout << "Sorry, I can't find the vertex" << endl;
                 exit(-1);	//直接退出程序
@@ -104,7 +136,7 @@ void Graph::showPath(const Graph& G, int u, int v)
 
     if(G.path[u][v] == -1) 
     {
-        pathID.emplace_back(G.data[u]);
+        pathID.emplace_back(idx_vec[u]);
         cout << G.data[u] << " to " << G.data[v] << endl;	//B站输出的是顶点序号，我这输出的是顶点的值
     }
     else{
@@ -128,9 +160,21 @@ Graph::~Graph()		//虚析构函数作用：一般都是用来程序结束后释�
 }
 
 using namespace std;
-
+struct inner{
+    int x=0;
+};
+void test_inner(){
+    inner* mInner;
+    int& mx=mInner->x;
+    mx=3;
+    std::cout<<mInner->x<<" v \n";
+}
 int main()
 {
+    //TODO test_inner();
+    char id='A';
+    map<int,int> k;
+    cout<<id<<endl;
     char v1, v2;
     int a, b;
     Graph G;

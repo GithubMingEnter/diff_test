@@ -1,7 +1,8 @@
 #include <iostream>
 #include <unistd.h>
 #include <cstring>
-
+#include<filesystem>
+/* Linux 系统 */
 #define	BUF_SIZE	4096
 #define	ACL_TLS_OUT_OF_INDEXES          0xffffffff
 
@@ -49,6 +50,11 @@ int main(int argc,char** argv)
     printf("current process file's path: %s, getcwd: %s\n",
            !ptr.empty() ? ptr.c_str() : "unknown", 
            !ptr1.empty() ? ptr1.c_str() : "unknown");
+    char* path;
+    path=get_current_dir_name();
+    std::cout<<"path : "<<path<<std::endl;
+      
+
 
     return 0;
 }
