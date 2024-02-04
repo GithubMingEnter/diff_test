@@ -5,7 +5,7 @@ int main()
 {
     USING_NAMESPACE_ACADO
 
-    DifferentialState s, v, m; // 微分状态量
+    DifferentialState s, v, m; // ?????
     Control u;
     Parameter T;
     DifferentialEquation f(0.0, T);
@@ -19,26 +19,27 @@ int main()
     f << dot(m) == -0.01 * u * u;
 
     ocp.subjectTo(f);
-    // 状态初始化
+    // ?????
     ocp.subjectTo(AT_START, s == 0.0);
     ocp.subjectTo(AT_START, v == 0.0);
     ocp.subjectTo(AT_START, m == 1.0);
-    // 终止条件约束
+    // ??????
     ocp.subjectTo(AT_END, s == 10.0);
     ocp.subjectTo(AT_END, v == 0.0);
-    // 其他条件约束
+    // ??????
     ocp.subjectTo(-0.1 <= v <= 1.7);
     ocp.subjectTo(-1.1 <= u <= 1.1);
     ocp.subjectTo(5.0 <= T <= 15.0);
 
     //------------------------------
-    GnuplotWindow window; // 在窗口中结果可视化
+    GnuplotWindow window; // ?????????
+    
     window.addSubplot(s, "DISTANCE s");
     window.addSubplot(v, "VELOCITY v");
     window.addSubplot(m, "MASS m");
     window.addSubplot(u, "CONTROL u");
 
-    OptimizationAlgorithm algorithm(ocp); // 构建优化算法
+    OptimizationAlgorithm algorithm(ocp); // ??????
     algorithm << window;
     algorithm.solve();
 

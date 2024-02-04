@@ -6,6 +6,13 @@
 /*
 由于主线程和子线程都使用了ret变量，所以需要进行加锁，避免资源竞争
 但是不方便,可以通过 future 和 promise获取得到
+步骤1
+根据值的类型 定义 promise
+然后利用promise变量获取得到future变量
+将promise变量作为引用参数通过std::ref()传递
+    通过set_value设定promise变量对象成员的值
+通过 future变量获取得到更新的变量值，注意只能一次
+然后释放线程
  */
 using namespace std;
 mutex mt;

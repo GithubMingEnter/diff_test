@@ -2,8 +2,9 @@
 project (pcl_test)
 
 
-find_package(PCL REQUIRED)
+
 set(CMAKE_CXX_STANDARD 17)
+find_package(PCL REQUIRED)
 include_directories(
     include
     ${PCL_INCLUDE_DIRS})

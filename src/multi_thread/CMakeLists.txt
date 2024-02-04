@@ -5,8 +5,8 @@ find_package(glog REQUIRED)
 
 find_package(Boost COMPONENTS system REQUIRED)
 
-add_executable(test test.cc)
-target_link_libraries(test pthread 
+add_executable(test_band test_band.cc)
+target_link_libraries(test_band pthread 
 
 )
 

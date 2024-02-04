@@ -53,9 +53,26 @@
 // 函数原型  
 int calculate(int x) {  
     return x * 2;  
-}  
-  
+} 
+double calculate_d(int x){
+    return x*3.5;
+}
+void test_pk(){
+    std::packaged_task<double(int)> task_d(std::bind(calculate_d,3));
+    std::future<double> res=task_d.get_future();
+    // std::thread th_d(std::move(task_d),3);
+    std::thread th_d(std::move(task_d),3);
+    std::cout << "Result is: " << res.get() << std::endl;  
+    if(th_d.joinable())
+    {
+        th_d.join();
+    }
+}
+// TODO 
+//detach experiment
+
 int main() {  
+    
     // 使用 std::bind 绑定函数和参数，创建一个 std::packaged_task 对象  
     std::packaged_task<int(int)> task(std::bind(calculate, 5));  
   
@@ -67,7 +84,7 @@ int main() {
   
     // 在主线程中打印结果  
     std::cout << "Result is: " << result.get() << std::endl;  
-  
+    test_pk();
     return 0;  
 }
 

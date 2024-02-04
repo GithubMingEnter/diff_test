@@ -19,6 +19,7 @@ int main(int argc, char *argv[])
     /* 条件日志 */
     int num_cookies = 11;
     int size = 123;
+    
     int i = 0;
     // num_cookies > 10才输出
     LOG_IF(INFO, num_cookies > 10)<< "Got lots of cookies";

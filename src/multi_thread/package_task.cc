@@ -10,15 +10,29 @@
 
 int task1(int a, int b)
 {
+    a*=2;
     int ret_a = a * a;
     int ret_b = b * 2;
     int ret = ret_a + ret_b;
     return ret;
 }
-
+int task2(int* a, int b)
+{
+    *a*=2;
+    int ret_a = *a * *a;
+    int ret_b = b * 2;
+    int ret = ret_a + ret_b;
+    return ret;
+}
+void test2(){
+    int ta=9,tb=6;
+    std::future<int> fu_async=std::async(task2,&ta,tb);//)
+    ta=3;
+    std::cout<< "ta = "<< ta<<std::endl;
+}
 int main()
 {
-
+    test2();
     std::future<int> fu = std::async(task1, 1, 2);
 
     std::cout << "return value is " << fu.get() << std::endl;
