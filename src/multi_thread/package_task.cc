@@ -16,19 +16,30 @@ int task1(int a, int b)
     int ret = ret_a + ret_b;
     return ret;
 }
-int task2(int* a, int b)
+int task2(int* a, int b,std::promise<int> &retp)
 {
     *a*=2;
     int ret_a = *a * *a;
     int ret_b = b * 2;
     int ret = ret_a + ret_b;
+    retp.set_value(ret);
     return ret;
 }
 void test2(){
-    int ta=9,tb=6;
-    std::future<int> fu_async=std::async(task2,&ta,tb);//)
-    ta=3;
-    std::cout<< "ta = "<< ta<<std::endl;
+    // std::promise<int> x;
+    // std::future<int> xf=x.get_future();
+    // int ta=9,tb=6;
+    // std::future<int> fu_async=std::async(task2,&ta,tb,std::ref(x));//)
+    // ta=3;
+    // std::cout<< "ta = "<< ta<<std::endl;//ta =6 ta在调用的时候得到其值
+    // ta=3;
+    // std::cout<< "ta = "<< ta<<std::endl;//ta =3 ta在调用的时候得到其值
+    
+    std::promise<int> x2;
+    std::future<int> xf2=x2.get_future();
+    int tc=9,td=6;
+    std::thread pf_th(task2,&tc,td,std::ref(x2));
+    std::cout<<" get() = "<<xf2.get();
 }
 int main()
 {
