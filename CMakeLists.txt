@@ -89,3 +89,4 @@ add_subdirectory(src/nlopt_test)
 add_subdirectory(src/pcl_test)
 
 add_subdirectory(src/protobuf_test)
+add_subdirectory(src/OpenCV_test)

@@ -1,4 +1,5 @@
 build
 logs/**
 .vscode
+.kdev4
 logs

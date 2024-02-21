@@ -87,4 +87,7 @@ boost_thread #note
 
 
 
+add_executable(test_mutex test_mutex.cc)
+target_link_libraries(test_mutex pthread 
 
+)
