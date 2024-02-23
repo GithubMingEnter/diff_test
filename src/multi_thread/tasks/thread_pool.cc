@@ -51,9 +51,7 @@ public:
             return true;
         }
     }
-
-
-                    
+      
 private:
     std::queue<T> que_;
     std::mutex mt_;

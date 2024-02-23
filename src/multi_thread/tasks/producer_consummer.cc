@@ -32,6 +32,7 @@ public:
     {
         unique_lock<mutex> lock(mt_);
         que_.push(value);
+        std::cout<<" thread id : "<<this_thread::get_id() <<std::endl;
     }
 
     void push(T&& value)
@@ -57,6 +58,7 @@ public:
 private:
     std::queue<T> que_;
     std::mutex mt_;
+    int maxSize_;
 } ;
 
 /* 

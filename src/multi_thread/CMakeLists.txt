@@ -36,8 +36,8 @@ add_executable(future future.cc)
 target_link_libraries(future pthread 
 
 )
-add_executable(promise_future promise_future.cc)
-target_link_libraries(promise_future pthread 
+add_executable(condition_promise_future condition_promise_future.cc)
+target_link_libraries(condition_promise_future pthread 
 
 )
 
