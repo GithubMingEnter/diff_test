@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(casadi_test)
+project(diffcpp_test)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -22,14 +22,7 @@ include_directories(SYSTEM ${EIGEN3_INCLUDE_DIR})
 add_executable(eigen_test src/eigen_test/eigen_test.cc)
 
 
-add_executable(${PROJECT_NAME}_node src/casadi_test.cpp )
-target_link_libraries(${PROJECT_NAME}_node ${catkin_LIBRARIES} casadi) 
 
-add_executable(${PROJECT_NAME}_node2 src/casadi_test2.cpp )
-target_link_libraries(${PROJECT_NAME}_node2 ${catkin_LIBRARIES} casadi) 
-
-add_executable(${PROJECT_NAME}_nodec src/casadi_test.cc )
-target_link_libraries(${PROJECT_NAME}_nodec ${catkin_LIBRARIES} casadi) 
 
 
 
@@ -86,9 +79,10 @@ add_subdirectory(src/multi_thread)
 add_subdirectory(src/acado_test)
 add_subdirectory(src/nlopt_test)
 
-add_subdirectory(src/pcl_test)
+# add_subdirectory(src/pcl_test)
 
 add_subdirectory(src/protobuf_test)
 add_subdirectory(src/OpenCV_test)
 
 add_subdirectory(src/cmake_test)
+add_subdirectory(src/casadi_test)
