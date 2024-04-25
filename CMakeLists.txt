@@ -4,8 +4,8 @@ project(diffcpp_test)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-
+set(CMAKE_BUILD_TYPE "Debug")
+option(GLOG_ON "build glog test" on)
 
 
 include_directories(
@@ -86,3 +86,4 @@ add_subdirectory(src/OpenCV_test)
 
 add_subdirectory(src/cmake_test)
 add_subdirectory(src/casadi_test)
+add_subdirectory(src/Bezier_path)

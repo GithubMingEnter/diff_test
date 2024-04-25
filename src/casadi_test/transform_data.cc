@@ -32,12 +32,39 @@ void vec_sx(){
     std::cout << "slice matrix:" << std::endl;
     std::cout << matrix(casadi::Slice(1,3,1)) << std::endl; //1-3 row 0 col
     std::cout << matrix(0,casadi::Slice(0,2,1)) << std::endl;
-}
 
+    std::vector<double> data = {1.0, 2.0, 3.0, 4.0};
+
+    // Transform the vector data into a CasADi SX object
+    casadi::SX sx_data;
+    for (const auto& value : data) {
+        casadi::SX sx_value = casadi::SX(value);
+        sx_data = casadi::SX::vertcat({sx_data, sx_value});
+    }
+
+    // Print the resulting symbolic expression
+    std::cout << "CasADi SX data: " << sx_data << std::endl;
+
+
+}
+void base_sx()
+{
+     // Define a double value
+    double value = 3.14;
+
+    // Transform the double value into a CasADi SX object
+    casadi::SX sx_value = casadi::SX(value);
+
+    // Print the symbolic expression
+    std::cout << "CasADi SX value: " << sx_value << std::endl;
+
+
+}
 
 int main()
 {
     vec_sx();
+    base_sx();
     return 0;
 
 }
