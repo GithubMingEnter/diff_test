@@ -48,6 +48,8 @@ public:
 
 
     Bezier(const std::vector<PointType> &list){
+        if(list.size()!=(N+1))
+            std::cerr<<"Please check points num"<<std::endl;
         for(int i=0;i<=N;++i){
             mDer_pre_points[0].col(i)=list[i];
         }
@@ -95,7 +97,6 @@ public:
         }
         return mDer_prefix[derivative_order] * temp.col(0);
     }
-
     void print(std::ostream &out, const std::string &s = "") const override
     {
         out << s << mDer_pre_points[0] << "\n";

@@ -14,6 +14,7 @@ FILE(GLOB_RECURSE ALL_SOURCE_FILES "*.cc *.cpp")
 add_executable(clamp_spline clamp_spline.cc)
 target_link_libraries(clamp_spline ${OpenCV_LIBS})
 
-
+add_executable(arc_draw arc_draw.cc)
+target_link_libraries(arc_draw ${OpenCV_LIBS})
 
 

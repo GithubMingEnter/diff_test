@@ -11,5 +11,7 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 add_executable(bezier_arc_parameterized_node bezier_arc_parameterized.cc)
 target_link_libraries(bezier_arc_parameterized_node Eigen3::Eigen ${OpenCV_LIBS})
 
+add_executable(circle_arc_parameterized circle_arc_parameterized.cc)
+target_link_libraries(circle_arc_parameterized Eigen3::Eigen ${OpenCV_LIBS})
 
 

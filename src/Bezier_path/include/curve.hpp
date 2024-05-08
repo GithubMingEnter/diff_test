@@ -49,11 +49,10 @@ class Curve {
    */
   virtual auto at(const double& t, const int& derivative_order = 0) const -> PointType = 0;
 
-  /**
-   * @brief 返回参数 $t$ 位置曲线上对应的点的位置，或$N$阶导数
-   * @param t 参数位置，定义域为 $[0,1]$
-   * @param derivative_order 求解的导数阶次，默认为$0$阶，即原函数值
-   * @return $t$参数位置，$N$阶导数的值
+   /**
+   * @brief 返回point距离曲线最近的权重
+   * @param init_param 参数位置，定义域为 $[0,1]$
+   * @return $t$参数位置，
    */
   virtual auto findClosestParameter(const PointType& point,
                                     double init_param,
@@ -62,25 +61,30 @@ class Curve {
      * 找到参数u使得离点p是最近的，即求解
      * f = (C(u)-p)*C'(u) = 0
      * f'= C'(u)*C'(u) + (C(u)-p)*C''(u)
+     * f''=2*C'(u)*C''(u)+(C(u)-p)*C'''(u)+C'(u)*C''(u)
      * 当给定u_{n+1} = u_{n} - f/f'
      */
     assert(max_iter > 0);
-    double numerator;
-    double denominator;
+    assert(N>=2);
+    double f=0.;
+    double df=0.;
+    double ddf=0.;
     for (int iter = 0; iter < max_iter; ++iter) {
-      auto d = this->at(init_param) - point;
-      auto first_order = this->at(init_param, 1);
-      auto second_order = this->at(init_param, 2);
-
-      numerator = d.dot(first_order);
-      denominator =
-          first_order.dot(first_order) + d.dot(second_order) + std::numeric_limits<double>::min();
-      init_param = init_param - numerator / denominator;
+      PointType d = this->at(init_param) - point;
+      PointType first_order = this->at(init_param, 1);
+      PointType second_order = this->at(init_param, 2);
+      // PointType third_order = this->at(init_param, 3);
+      f = d.dot(first_order);
+      df =first_order.dot(first_order) + d.dot(second_order) + 
+          std::numeric_limits<double>::min();
+      init_param = init_param - f / df; // 一阶方法
+      // init_param = init_param- df/ddf; //二阶方法
+      // std::cout<< d<<"d \n"<<first_order<<"first \n"<<second_order<<"second \n"<<std::endl;
+      // std::cout<<" f = "<<f<<std::endl;
     }
 
     return init_param;
   }
-
   /**
    * @brief 将曲线的参数内容传送到输出流对象中，默认必须末尾携带 `\n`
    * @param out 流对象，例如std::cout, std::stringsteam
