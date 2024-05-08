@@ -34,8 +34,8 @@ public:
       auto dxys=list[0]-center;
       auto dxye=list[1]-center;
       // start from x axis +, direction anti-clockwise
-       mAngle_start=normlizeAngle(std::atan2(dxys[1],dxys[0])) ;
-       mAngle_end = normlizeAngle(std::atan2(dxye[1],dxye[0]));
+       mAngle_start=normlizeAngle(std::atan2(dxys[1],dxys[0]))/M_PI ;
+       mAngle_end = normlizeAngle(std::atan2(dxye[1],dxye[0]))/M_PI;
       std::cout<<"Angle_end= "<<mAngle_end<<"\n"<<"Angle_start = "<<mAngle_start<<std::endl;
       int i=0;
       for(const auto it:list){
@@ -65,6 +65,7 @@ public:
             t_=t;
         }
     t_=t_*(mAngle_end-mAngle_start)+mAngle_start;
+    t_*=M_PI;
 
     if (derivative_order > N)
     {
@@ -80,13 +81,13 @@ public:
     }
     if(derivative_order == 1)
     {
-      temp=mR*PointType(-std::sin(t_),std::cos(t_));
+      temp=mR*PointType(-std::sin(t_),std::cos(t_))*M_PI;
       
       return temp;
     }
     else if(derivative_order == 2)
     {
-      temp=mR*PointType(-std::cos(t_),-std::sin(t_));
+      temp=mR*PointType(-std::cos(t_),-std::sin(t_))*M_PI*M_PI;
       return temp;
     }
     else{
