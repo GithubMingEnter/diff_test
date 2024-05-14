@@ -42,6 +42,22 @@ int main(int argc, char * argv[] )
     arg["ubg"]=ubg;
     arg["x0"]=x0;
     res = solver(arg);
+    // solving again makes no difference
+    auto sol1=solver(arg);
+    auto sol2=casadi::Opti();
+    sol2.subject_to();
+    /* int solver_status = res.at("return_status").scalar<int>();
+    if(solver_status==0)
+    {
+      cout<<"Optimization successful "<<endl;
+    }
+    else{
+      cout << "Optimization failed with status code: " << solver_status << endl;
+     
+    } */
+    casadi::Dict solver_status=solver.stats();
+    cout<<solver.stats()<<endl;
+    cout<<solver.stats().at("success")<<endl;
     auto te=chrono::steady_clock::now();
     auto time_diff = std::chrono::duration_cast<chrono::microseconds>(te-ts);
     cout<<" time lost :"<<time_diff.count()/1000<<endl;
@@ -49,10 +65,13 @@ int main(int argc, char * argv[] )
     // Print the solution
   cout << "--------------------------------" << endl;
   std::cout << res << std::endl;
-
+  cout << "--------------------------------" << endl;
+  cout << "Optimal solution for p = " << arg.at("p") << ":" << endl;
   cout<<"objective: "<<res.at("f")<<endl;
   cout<<"solution: " <<res.at("x")<<endl;
-    
+  // cout << setw(30) << "Dual solution (x): " << res.at("lam_x") << endl;
+  // cout << setw(30) << "Dual solution (g): " << res.at("lam_g") << endl;
+
 }
 
 
