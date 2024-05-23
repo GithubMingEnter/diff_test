@@ -81,9 +81,10 @@ add_subdirectory(src/nlopt_test)
 
 # add_subdirectory(src/pcl_test)
 
-add_subdirectory(src/protobuf_test)
+# add_subdirectory(src/protobuf_test)
 add_subdirectory(src/OpenCV_test)
 
 add_subdirectory(src/cmake_test)
 add_subdirectory(src/casadi_test)
 add_subdirectory(src/Bezier_path)
+add_subdirectory(src/pinocco_test)
