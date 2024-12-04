@@ -5,8 +5,10 @@ find_package(pinocchio REQUIRED)
 
 INCLUDE_DIRECTORIES(${PINOCCHIO_INCLUDE_DIRS})
 
-add_executable(kinetic_node pin_teach/kinetic.cpp)
-target_link_libraries(kinetic_node ${PINOCCHIO_LIBRARIES})
+# add_executable(kinetic_node pin_teach/kinetic.cpp)
+# target_link_libraries(kinetic_node ${PINOCCHIO_LIBRARIES})
+# add_executable(invkinetic_node pin_teach/invkinetic.cpp)
+# target_link_libraries(invkinetic_node ${PINOCCHIO_LIBRARIES})
 
 set(SOURCE_DIR "pin_teach")
 # get source file list 

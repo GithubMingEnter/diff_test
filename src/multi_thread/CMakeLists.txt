@@ -9,7 +9,7 @@ add_executable(test_band test_band.cc)
 target_link_libraries(test_band pthread 
 
 )
-
+include_directories(include)
 
 
 add_executable(boost_bind_test boost_bind_test.cc)
@@ -89,5 +89,9 @@ boost_thread #note
 
 add_executable(test_mutex test_mutex.cc)
 target_link_libraries(test_mutex pthread 
+
+)
+add_executable(http_download http_download.cc)
+target_link_libraries(http_download pthread 
 
 )

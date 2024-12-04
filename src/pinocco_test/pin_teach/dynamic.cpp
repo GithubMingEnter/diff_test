@@ -1,7 +1,7 @@
 #include "pinocchio/algorithm/rnea.hpp"
 #include "pinocchio/algorithm/crba.hpp"
 #include "pinocchio/algorithm/aba.hpp"
- #include "pinocchio/parsers/urdf.hpp"
+#include "pinocchio/parsers/urdf.hpp"
 int main(int argc, char ** argv)
 {
   using namespace pinocchio;
@@ -23,7 +23,8 @@ int main(int argc, char ** argv)
   crba(model, data, q);
 
   //将关节角速度和角加速度设为0，获取重力力矩
-  Eigen::VectorXd tau_gravity = rnea(model, data, q, Eigen::VectorXd::Zero(model.nv), Eigen::VectorXd::Zero(model.nv));
+  Eigen::VectorXd tau_gravity = rnea(model, data, q, 
+                              Eigen::VectorXd::Zero(model.nv), Eigen::VectorXd::Zero(model.nv));
   std::cout << "Gravity torques:\n" << tau_gravity.transpose() << std::endl;
 
   //设定随机关节角加速度

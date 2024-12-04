@@ -16,3 +16,14 @@ endforeach()
 
 # add_executable(listNode set/listNode.cc)
 
+#point source file directory
+set(SOURCE_DIR "share_mem")
+# get source file list 
+file(GLOB SOURCE ${SOURCE_DIR}/*.cc )
+
+foreach(SOURCE_FILE ${SOURCE})
+    # extract file name without extendsion name
+    get_filename_component(FILE_NAME ${SOURCE_FILE} NAME_WE)
+    add_executable(${FILE_NAME} ${SOURCE_FILE})
+
+endforeach()

@@ -14,7 +14,9 @@ glog::glog
 ${Boost_LIBRARIES} 
 )
 
+add_executable(lambda_test modernCC/lambda_test.cc)
+add_executable(function_test modernCC/function_test.cc)
 
-
+add_executable(share_test modernCC/share_test.cc)
 
 

@@ -35,10 +35,8 @@ void multi_point()
     int *p=nullptr;
     int pi=114514;
     p=&pi;
-    printf("*p={%d},pi={%d},&p={%d},&(*p)={%d}\n",*p,pi,&p,&(*p));
 
     int **p2=&p;
-    printf("**p2={%d},&(*p2)={%d},p2={%d},&(p2)={%d},&(**p2)={%d}\n",**p2,&(*p2),p2,&(p2),&(**p2));
     /* &（*p2）=&p=p2  &(**p2)=*p2=&(*p)=&(pi) 一个& 一个*可以抵消  */
     
 }

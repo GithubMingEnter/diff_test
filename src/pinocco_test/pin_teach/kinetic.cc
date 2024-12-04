@@ -32,7 +32,7 @@ int main(int argc,char **argv)
     // last joint idx pos
     JointIndex end_jointIdx = model.njoints-1;
     cout<<"pos: "<<data.oMi[end_jointIdx].translation().transpose()<<endl;
-
+    // rotation matrix transformed to quaterniond
     Eigen::Quaterniond quat(data.oMi[end_jointIdx].rotation());
 
     cout<<"rotation (quaternion)"<<quat.coeffs().transpose()<<endl;

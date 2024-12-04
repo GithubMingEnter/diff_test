@@ -15,7 +15,7 @@ int main(int argc, char **argv)
 
     Model model;
     pinocchio::urdf::buildModel(urdf_filename, model);
-    std::cout << "model name: " << model.name << std::endl;
+    std::cout << "                                                                                                                                        model name: " << model.name << std::endl;
 
     Data data(model);
 
